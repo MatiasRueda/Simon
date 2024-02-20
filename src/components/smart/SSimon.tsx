@@ -1,10 +1,11 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import DPiezas from "../dumb/DPiezas";
 import useSimon from "../../hooks/useSimon";
 import SJugar from "./SJugar";
 import { PIEZA } from "../../logic/simon";
 import { useSimonContext } from "../../context/SimonContext";
 import SNivel from "./SNivel";
+import SExplicacion from "./SExplicacion";
 
 export default function SSimon(): JSX.Element {
   const simonContext = useSimonContext();
@@ -34,7 +35,11 @@ export default function SSimon(): JSX.Element {
 
   return (
     <View style={estilos.componente}>
-      <SNivel mostrar={simon.jugar && !simon.memorizando} nivel={simon.nivel} />
+      <SNivel
+        mostrar={simon.jugar || simon.memorizando || simon.nivel != 1}
+        nivel={simon.nivel}
+      />
+      <SExplicacion mostrar={simon.jugar} memorizando={simon.memorizando} />
       <DPiezas
         press={eleccion}
         presionables={simon.jugar && !simon.memorizando}

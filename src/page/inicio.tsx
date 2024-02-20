@@ -1,20 +1,26 @@
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import Constants from "expo-constants";
 import DTitulo from "../components/dumb/DTitulo";
 import SSimon from "../components/smart/SSimon";
 import SMenu from "../components/smart/SMenu";
 import SMensaje from "../components/smart/SMensaje";
 import SimonContext from "../context/SimonContext";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Inicio(): JSX.Element {
   return (
     <SimonContext>
-      <View style={estilo.componente}>
+      <LinearGradient
+        colors={["#F7CE68", "#FBAB7E"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={estilo.componente}
+      >
         <DTitulo />
         <SSimon />
         <SMenu />
         <SMensaje />
-      </View>
+      </LinearGradient>
     </SimonContext>
   );
 }
@@ -25,6 +31,5 @@ const estilo = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "orange",
   },
 });

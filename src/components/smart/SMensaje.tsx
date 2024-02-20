@@ -18,7 +18,9 @@ export default function SMensajes(): JSX.Element {
           </Text>
           <Pressable onPress={volver}>
             <View style={estilo.boton}>
-              <Text>{simonContext.mensajes.mensajeBoton}</Text>
+              <Text style={estilo.textoBoton}>
+                {simonContext.mensajes.mensajeBoton}
+              </Text>
             </View>
           </Pressable>
         </View>
@@ -38,8 +40,8 @@ const estilo = StyleSheet.create({
   },
 
   boton: {
-    height: 50,
-    width: 100,
+    height: 80,
+    width: 170,
     marginTop: 20,
     backgroundColor: "white",
     alignItems: "center",
@@ -49,5 +51,10 @@ const estilo = StyleSheet.create({
   texto: {
     color: "white",
     fontSize: 30,
+  },
+
+  textoBoton: {
+    textAlign: "center",
+    fontSize: 20,
   },
 });

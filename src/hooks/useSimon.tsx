@@ -74,7 +74,7 @@ export default function useSimon(): UseSimon {
       }, 1000);
       return;
     }
-    const delay = !indiceMemorizar ? 3000 : 3000 * indiceMemorizar;
+    const delay = 3000;
     setTimeout(() => {
       setIndiceMemorizar((prev) => {
         setMostrarResultado(false);

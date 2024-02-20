@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { useSimonContext } from "../../context/SimonContext";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function SMenu(): JSX.Element {
   const simonContext = useSimonContext();
@@ -13,7 +14,7 @@ export default function SMenu(): JSX.Element {
   return (
     <View style={estilos.componente}>
       <Pressable onPress={mostrarMenu}>
-        <Text style={estilos.texto}>Menu</Text>
+        <AntDesign name="caretup" size={24} color="black" />
       </Pressable>
     </View>
   );
@@ -21,8 +22,8 @@ export default function SMenu(): JSX.Element {
 
 const estilos = StyleSheet.create({
   componente: {
-    height: 30,
-    backgroundColor: "red",
+    height: 40,
+    marginTop: 30,
   },
   texto: {
     textAlign: "center",
