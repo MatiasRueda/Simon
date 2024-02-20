@@ -6,9 +6,10 @@ type MetodosSimon = {
   coinciden: (posicion: number, pieza: PIEZA) => void;
   reiniciar: () => void;
   siguienteNivel: () => void;
+  piezaActual: () => PIEZA;
 };
 
-type Informacion = {
+export type UseSimon = {
   indice: number;
   nivel: number;
   mostrarResultado: boolean;
@@ -21,7 +22,7 @@ type Informacion = {
 
 const simon: Simon = new Simon();
 
-export default function useSimon(): Informacion {
+export default function useSimon(): UseSimon {
   const [indice, setIndice] = useState<number>(0);
   const [nivel, setNivel] = useState<number>(simon.nivel);
   const [piezas, setPiezas] = useState<PIEZA[]>([PIEZA.AMARILLO, PIEZA.ROJO]);
@@ -33,6 +34,10 @@ export default function useSimon(): Informacion {
   const empezarMostrar = () => {
     setMostrarResultado(true);
     setJugar(true);
+  };
+
+  const piezaActual = (): PIEZA => {
+    return piezas[indice];
   };
 
   const coinciden = (posicion: number, pieza: PIEZA) => {
@@ -86,6 +91,7 @@ export default function useSimon(): Informacion {
       siguienteNivel,
       coinciden,
       empezarMostrar,
+      piezaActual,
     },
   };
 }

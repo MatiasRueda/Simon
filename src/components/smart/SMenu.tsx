@@ -1,12 +1,13 @@
-import { useState } from "react";
-import DMenu from "../dumb/DMenu";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useSimonContext } from "../../context/SimonContext";
 
 export default function SMenu(): JSX.Element {
-  const [menu, setMenu] = useState<boolean>(false);
-
-  const mostrarMenu = () => {
-    setMenu(true);
+  const simonContext = useSimonContext();
+  const mostrarMenu = (): void => {
+    simonContext.agregarMensajes({
+      mensajeTitulo: "Esto es el menu",
+      mensajeBoton: "Volver",
+    });
   };
 
   return (
@@ -14,7 +15,6 @@ export default function SMenu(): JSX.Element {
       <Pressable onPress={mostrarMenu}>
         <Text style={estilos.texto}>Menu</Text>
       </Pressable>
-      {menu && <DMenu />}
     </View>
   );
 }

@@ -3,14 +3,19 @@ import Constants from "expo-constants";
 import DTitulo from "../components/dumb/DTitulo";
 import SJuego from "../components/smart/SJuego";
 import SMenu from "../components/smart/SMenu";
+import SMensaje from "../components/smart/SMensaje";
+import SimonContext from "../context/SimonContext";
 
 export default function Inicio(): JSX.Element {
   return (
-    <View style={estilo.componente}>
-      <DTitulo />
-      <SJuego />
-      <SMenu />
-    </View>
+    <SimonContext>
+      <View style={estilo.componente}>
+        <DTitulo />
+        <SJuego />
+        <SMenu />
+        <SMensaje />
+      </View>
+    </SimonContext>
   );
 }
 

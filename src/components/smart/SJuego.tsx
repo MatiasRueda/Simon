@@ -1,28 +1,19 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet } from "react-native";
 import DPiezas from "../dumb/DPiezas";
 import DNivel from "../dumb/DNivel";
 import useSimon from "../../hooks/useSimon";
+import SJugar from "./SJugar";
 
 export default function SJuego(): JSX.Element {
   const simon = useSimon();
 
-  const mostrarResultado = () => {
-    simon.metodos.empezarMostrar();
-  };
-
   return (
     <View style={estilos.componente}>
       <DNivel nivel={simon.nivel} />
-      <DPiezas elegido={simon.mostrarResultado && simon.piezas[simon.indice]} />
-      <View style={estilos.componenteJugar}>
-        {!simon.jugar && (
-          <Pressable onPress={mostrarResultado}>
-            <View style={estilos.componenteJugar}>
-              <Text style={estilos.jugar}>Jugar</Text>
-            </View>
-          </Pressable>
-        )}
-      </View>
+      <DPiezas
+        elegido={simon.mostrarResultado && simon.metodos.piezaActual()}
+      />
+      <SJugar {...simon} />
     </View>
   );
 }
