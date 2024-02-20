@@ -12,7 +12,7 @@ export default function SMenu(): JSX.Element {
         <View style={estilos.componente}>
           <View style={estilos.menu}>
             <Pressable style={estilos.salida} onPress={simonContext.sacarMenu}>
-              <AntDesign name="closecircleo" size={24} color="black" />
+              <AntDesign name="close" size={24} color="black" />
             </Pressable>
             <SCambiarColor />
           </View>

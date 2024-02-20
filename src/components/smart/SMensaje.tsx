@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { botonPress, textoPress } from "../../styles/estilos";
 import { useSimonContext } from "../../context/SimonContext";
 import { Fragment } from "react";
 
@@ -18,20 +19,10 @@ export default function SMensajes(): JSX.Element {
           </Text>
           <Pressable
             onPress={volver}
-            style={({ pressed }) => [
-              {
-                backgroundColor: pressed ? "black" : "white",
-              },
-              estilos.boton,
-            ]}
+            style={({ pressed }) => [botonPress(pressed), estilos.boton]}
           >
             {({ pressed }) => (
-              <Text
-                style={[
-                  { color: pressed ? "white" : "black" },
-                  estilos.textoBoton,
-                ]}
-              >
+              <Text style={[textoPress(pressed), estilos.textoBoton]}>
                 {simonContext.mensajes?.mensajeBoton}
               </Text>
             )}

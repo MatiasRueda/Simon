@@ -1,4 +1,5 @@
 import { Pressable, View, Text, StyleSheet } from "react-native";
+import { botonPress, textoPress } from "../../styles/estilos";
 import { UseSimon } from "../../hooks/useSimon";
 
 export default function SJugar({ ...rest }: UseSimon): JSX.Element {
@@ -11,19 +12,13 @@ export default function SJugar({ ...rest }: UseSimon): JSX.Element {
       {!rest.jugar && (
         <Pressable
           style={({ pressed }) => [
-            {
-              backgroundColor: pressed ? "black" : "white",
-            },
+            botonPress(pressed),
             estilos.componenteJugar,
           ]}
           onPress={mostrarResultado}
         >
           {({ pressed }) => (
-            <Text
-              style={[{ color: pressed ? "white" : "black" }, estilos.jugar]}
-            >
-              Jugar
-            </Text>
+            <Text style={[textoPress(pressed), estilos.jugar]}>Jugar</Text>
           )}
         </Pressable>
       )}

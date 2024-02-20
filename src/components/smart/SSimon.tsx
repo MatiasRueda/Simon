@@ -13,7 +13,7 @@ export default function SSimon(): JSX.Element {
 
   const gano = (): void => {
     simonContext.agregarMensajes({
-      mensajeTitulo: "Felicidades Ganaste!",
+      mensajeTitulo: "Pasaste el nivel!",
       mensajeBoton: "Siguiente nivel",
     });
     simon.metodos.siguienteNivel();
