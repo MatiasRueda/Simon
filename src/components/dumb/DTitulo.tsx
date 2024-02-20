@@ -6,7 +6,7 @@ export default function DTitulo(): JSX.Element {
 
 const estilo = StyleSheet.create({
   titulo: {
-    marginTop: 10,
+    marginTop: 30,
     fontSize: 30,
     textAlign: "center",
   },

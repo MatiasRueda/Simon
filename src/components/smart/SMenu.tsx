@@ -1,31 +1,50 @@
-import { Pressable, StyleSheet, View } from "react-native";
+import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useSimonContext } from "../../context/SimonContext";
+import React, { Fragment } from "react";
 import { AntDesign } from "@expo/vector-icons";
+import SCambiarColor from "./SCambiarColor";
 
 export default function SMenu(): JSX.Element {
   const simonContext = useSimonContext();
-  const mostrarMenu = (): void => {
-    simonContext.agregarMensajes({
-      mensajeTitulo: "Esto es el menu",
-      mensajeBoton: "Volver",
-    });
-  };
-
   return (
-    <View style={estilos.componente}>
-      <Pressable onPress={mostrarMenu}>
-        <AntDesign name="caretup" size={24} color="black" />
-      </Pressable>
-    </View>
+    <Fragment>
+      {simonContext.menu && (
+        <View style={estilos.componente}>
+          <View style={estilos.menu}>
+            <Pressable style={estilos.salida} onPress={simonContext.sacarMenu}>
+              <AntDesign name="closecircleo" size={24} color="black" />
+            </Pressable>
+            <SCambiarColor />
+          </View>
+        </View>
+      )}
+    </Fragment>
   );
 }
 
 const estilos = StyleSheet.create({
   componente: {
-    height: 40,
-    marginTop: 30,
+    height: "100%",
+    width: "100%",
+    position: "absolute",
+    backgroundColor: "black",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  texto: {
-    textAlign: "center",
+
+  menu: {
+    height: 400,
+    width: 300,
+    backgroundColor: "white",
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  salida: {
+    height: 40,
+    width: "80%",
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
   },
 });
