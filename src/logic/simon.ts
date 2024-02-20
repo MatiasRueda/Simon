@@ -7,13 +7,12 @@ export enum PIEZA {
 
 export default class Simon {
   #nivel: number = 1;
-  #posicion: number = 0;
   #ganaste: boolean = false;
   #resultado: Map<number, PIEZA> = new Map();
 
   constructor() {
     const pieza: PIEZA = this.#nuevaPieza();
-    this.#resultado.set(this.#nivel, pieza);
+    this.#resultado.set(0, pieza);
   }
 
   #nuevaPieza(): PIEZA {
@@ -31,13 +30,17 @@ export default class Simon {
 
   siguienteNivel(): void {
     const pieza = this.#nuevaPieza();
-    this.#nivel = this.#nivel + 1;
     this.#resultado.set(this.#nivel, pieza);
+    this.#nivel = this.#nivel + 1;
+    this.#ganaste = false;
   }
 
   reiniciar(): void {
     this.#resultado = new Map();
+    const pieza: PIEZA = this.#nuevaPieza();
+    this.#resultado.set(0, pieza);
     this.#nivel = 1;
+    this.#ganaste = false;
   }
 
   get resultado(): PIEZA[] {

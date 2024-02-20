@@ -3,89 +3,93 @@ import Simon, { PIEZA } from "../logic/simon";
 
 type MetodosSimon = {
   empezarMostrar: () => void;
-  coinciden: (posicion: number, pieza: PIEZA) => void;
+  coinciden: (pieza: PIEZA) => boolean | undefined;
   reiniciar: () => void;
   siguienteNivel: () => void;
   piezaActual: () => PIEZA;
 };
 
 export type UseSimon = {
-  indice: number;
+  indiceMemorizar: number;
   nivel: number;
   mostrarResultado: boolean;
   piezas: PIEZA[];
   jugar: boolean;
-  ganaste: boolean;
-  perdiste: boolean;
+  memorizando: boolean;
   metodos: MetodosSimon;
 };
 
 const simon: Simon = new Simon();
 
 export default function useSimon(): UseSimon {
-  const [indice, setIndice] = useState<number>(0);
+  const [indiceMemorizar, setIndiceMemorizar] = useState<number>(0);
+  const [eleccion, setEleccion] = useState<number>(0);
   const [nivel, setNivel] = useState<number>(simon.nivel);
-  const [piezas, setPiezas] = useState<PIEZA[]>([PIEZA.AMARILLO, PIEZA.ROJO]);
+  const [piezas, setPiezas] = useState<PIEZA[]>(simon.resultado);
   const [mostrarResultado, setMostrarResultado] = useState<boolean>(false);
+  const [memorizando, setMemorizando] = useState<boolean>(false);
   const [jugar, setJugar] = useState<boolean>(false);
-  const [ganaste, setGanaste] = useState<boolean>(false);
-  const [perdiste, setPerdiste] = useState<boolean>(false);
 
   const empezarMostrar = () => {
     setMostrarResultado(true);
+    setMemorizando(true);
     setJugar(true);
   };
 
   const piezaActual = (): PIEZA => {
-    return piezas[indice];
+    return piezas[indiceMemorizar];
   };
 
-  const coinciden = (posicion: number, pieza: PIEZA) => {
-    if (!simon.coinciden(posicion, pieza)) {
-      setPerdiste(true);
-      return;
-    }
-    if (simon.ganaste) setGanaste(true);
-    setIndice((prev) => prev + 1);
+  const coinciden = (pieza: PIEZA): boolean | undefined => {
+    if (!simon.coinciden(eleccion, pieza)) return false;
+    if (simon.ganaste) return true;
+    setEleccion((prev) => prev + 1);
+    return undefined;
   };
 
   const reiniciar = () => {
     simon.reiniciar();
     setNivel(simon.nivel);
     setPiezas(simon.resultado);
+    setEleccion(0);
+    setJugar(false);
   };
 
   const siguienteNivel = () => {
     simon.siguienteNivel();
     setNivel(simon.nivel);
     setPiezas(simon.resultado);
+    setEleccion(0);
+    setJugar(false);
   };
 
   useEffect(() => {
-    if (!mostrarResultado && !indice) return;
-    if (!mostrarResultado && !!indice) {
+    if (!mostrarResultado && !indiceMemorizar) {
+      setMemorizando(false);
+      return;
+    }
+    if (!mostrarResultado && !!indiceMemorizar) {
       setTimeout(() => {
         setMostrarResultado(true);
       }, 1000);
       return;
     }
-    const delay = !indice ? 3000 : 3000 * indice;
+    const delay = !indiceMemorizar ? 3000 : 3000 * indiceMemorizar;
     setTimeout(() => {
-      setIndice((prev) => {
+      setIndiceMemorizar((prev) => {
         setMostrarResultado(false);
         return prev! + 1 === piezas.length ? 0 : prev! + 1;
       });
     }, delay);
-  }, [indice, mostrarResultado]);
+  }, [indiceMemorizar, mostrarResultado]);
 
   return {
-    indice,
+    indiceMemorizar,
     piezas,
     nivel,
     mostrarResultado,
-    ganaste,
-    perdiste,
     jugar,
+    memorizando,
     metodos: {
       reiniciar,
       siguienteNivel,

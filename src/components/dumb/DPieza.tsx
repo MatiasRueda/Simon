@@ -1,4 +1,10 @@
-import { ColorValue, StyleSheet, View, ViewStyle } from "react-native";
+import {
+  ColorValue,
+  Pressable,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from "react-native";
 import aumentarBrillo from "../../auxiliar/brillo";
 
 type Parametros = {
@@ -8,6 +14,8 @@ type Parametros = {
   bottomRight?: boolean;
   elegido: boolean;
   color: ColorValue;
+  presionable: boolean;
+  press: () => void;
 };
 
 const estilos = StyleSheet.create({
@@ -29,5 +37,9 @@ export default function DPieza({ ...rest }: Parametros): JSX.Element {
       : rest.color,
   };
 
-  return <View style={estilo}></View>;
+  return (
+    <Pressable onPress={rest.press} disabled={!rest.presionable}>
+      <View style={estilo}></View>
+    </Pressable>
+  );
 }

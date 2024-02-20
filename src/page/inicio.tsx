@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 import DTitulo from "../components/dumb/DTitulo";
-import SJuego from "../components/smart/SJuego";
+import SSimon from "../components/smart/SSimon";
 import SMenu from "../components/smart/SMenu";
 import SMensaje from "../components/smart/SMensaje";
 import SimonContext from "../context/SimonContext";
@@ -11,7 +11,7 @@ export default function Inicio(): JSX.Element {
     <SimonContext>
       <View style={estilo.componente}>
         <DTitulo />
-        <SJuego />
+        <SSimon />
         <SMenu />
         <SMensaje />
       </View>

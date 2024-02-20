@@ -8,6 +8,5 @@ const estilos = StyleSheet.create({
   nivel: {
     textAlign: "center",
     fontSize: 23,
-    marginTop: 10,
   },
 });

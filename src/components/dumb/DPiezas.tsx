@@ -1,29 +1,53 @@
 import { StyleSheet, View } from "react-native";
 import DPieza from "./DPieza";
 
-export default function DPiezas(props: {
+type Parametros = {
   elegido: string | false;
-}): JSX.Element {
+  presionables: boolean;
+  press: (pieza: string) => void;
+};
+
+export default function DPiezas({ ...rest }: Parametros): JSX.Element {
   return (
     <View style={estilos.componente}>
       <View style={estilos.fila}>
-        <DPieza topLeft color="#ffff00" elegido={props.elegido === "#ffff00"} />
+        <DPieza
+          topLeft
+          presionable={rest.presionables}
+          color="#ffff00"
+          elegido={rest.elegido === "#ffff00"}
+          press={() => {
+            rest.press("#ffff00");
+          }}
+        />
         <DPieza
           topRight
+          presionable={rest.presionables}
           color="#0000ff"
-          elegido={props.elegido === "#0000ff"}
+          elegido={rest.elegido === "#0000ff"}
+          press={() => {
+            rest.press("#0000ff");
+          }}
         />
       </View>
       <View style={estilos.fila}>
         <DPieza
           bottomLeft
+          presionable={rest.presionables}
           color="#ff0000"
-          elegido={props.elegido === "#ff0000"}
+          elegido={rest.elegido === "#ff0000"}
+          press={() => {
+            rest.press("#ff0000");
+          }}
         />
         <DPieza
           bottomRight
+          presionable={rest.presionables}
           color="#008000"
-          elegido={props.elegido === "#008000"}
+          elegido={rest.elegido === "#008000"}
+          press={() => {
+            rest.press("#008000");
+          }}
         />
       </View>
     </View>
