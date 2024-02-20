@@ -12,16 +12,29 @@ export default function SMensajes(): JSX.Element {
   return (
     <Fragment>
       {simonContext.mensajes && (
-        <View style={estilo.componente}>
-          <Text style={estilo.texto}>
+        <View style={estilos.componente}>
+          <Text style={estilos.texto}>
             {simonContext.mensajes.mensajeTitulo}
           </Text>
-          <Pressable onPress={volver}>
-            <View style={estilo.boton}>
-              <Text style={estilo.textoBoton}>
-                {simonContext.mensajes.mensajeBoton}
+          <Pressable
+            onPress={volver}
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed ? "black" : "white",
+              },
+              estilos.boton,
+            ]}
+          >
+            {({ pressed }) => (
+              <Text
+                style={[
+                  { color: pressed ? "white" : "black" },
+                  estilos.textoBoton,
+                ]}
+              >
+                {simonContext.mensajes?.mensajeBoton}
               </Text>
-            </View>
+            )}
           </Pressable>
         </View>
       )}
@@ -29,7 +42,7 @@ export default function SMensajes(): JSX.Element {
   );
 }
 
-const estilo = StyleSheet.create({
+const estilos = StyleSheet.create({
   componente: {
     height: "100%",
     width: "100%",
@@ -43,7 +56,6 @@ const estilo = StyleSheet.create({
     height: 80,
     width: 170,
     marginTop: 20,
-    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },

@@ -53,6 +53,7 @@ export default function SSimon(): JSX.Element {
 const estilos = StyleSheet.create({
   componente: {
     flex: 1,
+    alignItems: "center",
     justifyContent: "center",
   },
 

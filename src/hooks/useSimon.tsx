@@ -29,6 +29,8 @@ export default function useSimon(): UseSimon {
   const [mostrarResultado, setMostrarResultado] = useState<boolean>(false);
   const [memorizando, setMemorizando] = useState<boolean>(false);
   const [jugar, setJugar] = useState<boolean>(false);
+  const SEG_MEMORIZAR: number = 1;
+  const SEG_ENTRE_MEMORIZAR: number = 1;
 
   const empezarMostrar = () => {
     setMostrarResultado(true);
@@ -71,16 +73,15 @@ export default function useSimon(): UseSimon {
     if (!mostrarResultado && !!indiceMemorizar) {
       setTimeout(() => {
         setMostrarResultado(true);
-      }, 1000);
+      }, SEG_ENTRE_MEMORIZAR * 1000);
       return;
     }
-    const delay = 3000;
     setTimeout(() => {
       setIndiceMemorizar((prev) => {
         setMostrarResultado(false);
         return prev! + 1 === piezas.length ? 0 : prev! + 1;
       });
-    }, delay);
+    }, SEG_MEMORIZAR * 1000);
   }, [indiceMemorizar, mostrarResultado]);
 
   return {

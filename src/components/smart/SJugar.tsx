@@ -7,12 +7,24 @@ export default function SJugar({ ...rest }: UseSimon): JSX.Element {
   };
 
   return (
-    <View style={estilos.componenteJugar}>
+    <View style={estilos.componente}>
       {!rest.jugar && (
-        <Pressable onPress={mostrarResultado}>
-          <View style={estilos.componenteJugar}>
-            <Text style={estilos.jugar}>Jugar</Text>
-          </View>
+        <Pressable
+          style={({ pressed }) => [
+            {
+              backgroundColor: pressed ? "black" : "white",
+            },
+            estilos.componenteJugar,
+          ]}
+          onPress={mostrarResultado}
+        >
+          {({ pressed }) => (
+            <Text
+              style={[{ color: pressed ? "white" : "black" }, estilos.jugar]}
+            >
+              Jugar
+            </Text>
+          )}
         </Pressable>
       )}
     </View>
@@ -21,24 +33,24 @@ export default function SJugar({ ...rest }: UseSimon): JSX.Element {
 
 const estilos = StyleSheet.create({
   componente: {
-    flex: 1,
-    justifyContent: "center",
+    height: 100,
+    width: 200,
   },
 
   texto: {
     textAlign: "center",
   },
+
   componenteJugar: {
-    height: 80,
+    height: 100,
+    width: 200,
     alignItems: "center",
     justifyContent: "center",
+    borderColor: "black",
+    borderWidth: 3,
   },
 
   jugar: {
-    textAlign: "center",
-    width: 150,
-    fontSize: 35,
-    borderWidth: 2,
-    borderColor: "black",
+    fontSize: 45,
   },
 });

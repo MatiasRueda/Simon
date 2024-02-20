@@ -32,14 +32,21 @@ export default function DPieza({ ...rest }: Parametros): JSX.Element {
     borderTopRightRadius: rest.topRight ? 125 : undefined,
     borderBottomLeftRadius: rest.bottomLeft ? 125 : undefined,
     borderBottomRightRadius: rest.bottomRight ? 125 : undefined,
-    backgroundColor: rest.elegido
-      ? aumentarBrillo(rest.color as string, 50)
-      : rest.color,
   };
 
   return (
-    <Pressable onPress={rest.press} disabled={!rest.presionable}>
-      <View style={estilo}></View>
-    </Pressable>
+    <Pressable
+      style={({ pressed }) => [
+        {
+          backgroundColor:
+            pressed || rest.elegido
+              ? aumentarBrillo(rest.color as string, 50)
+              : rest.color,
+        },
+        estilo,
+      ]}
+      onPress={rest.press}
+      disabled={!rest.presionable}
+    ></Pressable>
   );
 }
