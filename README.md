@@ -36,7 +36,6 @@ Se separaron los componentes que se utilizan en el proyecto en smart  y dumb com
 ## Tecnologías utilizadas
   - React native
   - Typescript
-  - 
 ## Estructura 
 
 ```
