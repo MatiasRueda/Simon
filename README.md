@@ -21,8 +21,11 @@ Esta app ofrece al usuario un simple juego de Simón Dice donde podrá poner a p
 Proyecto individual.
 
 ## Capturas de pantalla 
-<img src="https://i.postimg.cc/Qd2dxFWb/Memotest1.png"/>
-<img src="https://i.postimg.cc/4NvDhnMP/Memotest2.png"/>
+<p align="center">
+<img src="https://i.postimg.cc/4xH0cL7j/Screenshot-2024-02-20-20-48-59-199-com-matiasrueda-Simon.jpg" width=200/>
+<img src="https://i.postimg.cc/jjKhjZzH/Screenshot-2024-02-20-20-49-07-946-com-matiasrueda-Simon.jpg" width=200/>
+<img src="https://i.postimg.cc/nhwQy23V/Screenshot-2024-02-20-20-49-30-349-com-matiasrueda-Simon.jpg" width=200/>
+</p>
 
 ## Estrategias
 ### Smart y Dumb Component
